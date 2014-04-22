@@ -1,4 +1,4 @@
-Title: Importing key Pair
+Title: Importing key Pairs
 Date: 2014-04-16 14:00
 Tags: instances, launching, how to
 Slug: import_key_pair 
