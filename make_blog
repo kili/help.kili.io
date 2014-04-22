@@ -1,2 +1,0 @@
-rm output/* -r; 
-pelican -s pelican.conf.py content -o output 

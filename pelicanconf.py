@@ -10,7 +10,7 @@ TIMEZONE = "Africa/Nairobi"
 RELATIVE_URLS = True
 
 GITHUB_URL = "http://github.com/kili/help.kili.io"
-DISQUS_SITENAME = "kili_help_docs"
+DISQUS_SITENAME = "kilihelpdocs"
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = "C"
@@ -39,6 +39,7 @@ STATIC_PATHS = [
     'js',
     'css',
     'extra/robots.txt',
+    'CNAME'
     ]
 
 # code blocks with line numbers

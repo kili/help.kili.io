@@ -56,3 +56,5 @@ docs/_build/
 *.swp
 output
 *.ignore
+pelican.pid
+srv.pid
