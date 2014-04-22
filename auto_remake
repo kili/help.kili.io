@@ -1,0 +1,2 @@
+./make_blog;
+when-changed -r content ./make_blog 
