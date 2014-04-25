@@ -29,7 +29,7 @@ Ephemeral instances are mostly usefull for one-off/short-lived applications wher
     * To launch an **ephemeral instance**, select "Boot from image" as your Instance Boot Source and choose your preffered image Image. <br>**NB.** If you opened the Launch Instance modal from the images panel, the last two optiona will already have been set<br>
     * To launch a **persistent instance**, select "Boot from image (creates a new volume)" as your Instance Boot Source, choose your preffered image and enter a device size for your new block volume. Do not check the `Delete on Terminate:` checkbox lest you defeat the purpose of your persistent instance. 
 
-3. Switch to the "Access & Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh `Authorized_Keys` file for key based authentication. If the drop down has no keys listed, click the `+` and follow the <a href="import_key_pair.html" target="_blank">import key pair</a> guide.
+3. Switch to the "Access & Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh `Authorized_Keys` file for key based authentication. If the drop down has no keys listed, click the `+` and follow the <a href="import_keypair" target="_blank">import keypair</a> guide.
 
 ####Post Creation
 After launch, you probably want to assign a public IP to your instance.
