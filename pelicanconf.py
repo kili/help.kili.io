@@ -10,7 +10,7 @@ TIMEZONE = "Africa/Nairobi"
 RELATIVE_URLS = True
 
 GITHUB_URL = "http://github.com/kili/help.kili.io"
-DISQUS_SITENAME = "kilihelpdocs"
+#DISQUS_SITENAME = "kilihelpdocs"
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = "C"
@@ -45,7 +45,12 @@ STATIC_PATHS = [
 # code blocks with line numbers
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
+#kili specific prefs
 THEME = "pelican-kili-theme"
 HIDE_SIDEBAR = True
-
 CUSTOM_CSS = 'css/kili.css'
+SHOW_ARTICLE_AUTHOR = True
+DISPLAY_PAGES_ON_MENU = False
+DISPLAY_CATEGORIES_ON_MENU = False
+DISPLAY_ARCHIVES_ON_MENU = False
+DEFAULT_DATE_FORMAT = ('%B %d, %Y')
