@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <title>Launching an Instance - Kili</title>
+    <title>Importing keypairs - Kili</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -13,9 +13,9 @@
     <!-- Open Graph tags -->
         <meta property="og:site_name" content="Kili" />
             <meta property="og:type" content="article"/>
-            <meta property="og:title" content="Launching an Instance"/>
-            <meta property="og:url" content="./launch_an_instance.html"/>
-            <meta property="og:description" content="A &#34;how to&#34; on launching an instance at dash.kili.io"/>
+            <meta property="og:title" content="Importing keypairs"/>
+            <meta property="og:url" content="./import_keypair.html"/>
+            <meta property="og:description" content="A &#34;how to&#34; on Importing a keypair"/>
             <meta property="article:published_time" content="2014-04-16" />
                 <meta property="article:section" content="misc" />
                 <meta property="article:tag" content="instances" />
@@ -73,10 +73,10 @@ Kili            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="./launch_an_instance.html"
+                    <a href="./import_keypair.html"
                        rel="bookmark"
-                       title="Permalink to Launching an Instance">
-                        Launching an Instance
+                       title="Permalink to Importing keypairs">
+                        Importing keypairs
                     </a>
                 </h1>
             </header>
@@ -101,51 +101,42 @@ Kili            </a>
 </footer><!-- /.post-info -->                    </div>
                 </div>
                 <h4>INTRO</h4>
-<p>This article illustrates how to spin up both persistent and ephemeral instances from the dashboard.<br>
-A Persistent instance uses a block storage volume for it's root file system. This allows the operating system files (and related user data) to survive termination of the associated instance.<br>
-An Ephemeral instance is the direct opposite of a Persistent instance. It's root volume will be destroyed once the instance is terminated!</p>
-<p>Ephemeral instances are mostly usefull for one-off/short-lived applications whereas persistent instances will be prefferable for longterm applications.</p>
+<p>Keypairs are how you login to your instance after it is launched.</p>
 <h4>Pre-requisites:-</h4>
 <ol>
 <li>Active login session</li>
-<li>Sufficient resource quota</li>
 </ol>
 <h4>Instructions</h4>
 <ol>
 <li>
-<p>Open the launch Instance modal from either:-</p>
+<p>If you do not have a keypair, generate one on:-</p>
 <ul>
-<li>The <a href="https://dash.kili.io/project/instances/" target="_blank">instances panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Instances</code>) by clicking "launch instance" button at the top right of the panel.</li>
-<li>The <a href="https://dash.kili.io/project/images/" target="_blank">images panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Images</code>) by clicking the "launch" button inthe actions collumn of the desired image.</li>
+<li>*nix by :-<ul>
+<li>Running ssh-keygen -t rsa</li>
+<li>Enter key location (leave blank for bracketed default)</li>
+<li>Enter a passphrase and confirm</li>
+</ul>
+</li>
+<li>Windows using <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> by:-<ul>
+<li>Running puttygen.exe</li>
+<li>Click generate and fill the progress bar by moving the cursor over the blank area to generate random characters.</li>
+<li>Enter a passphrase in the Key passphrase field and confirm the same in the respective field. </li>
+<li>Save the public and private keys in a safe location.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
-<p>In the "Launch Instance" modal form, provide an Instance Name and Flavor.<br></p>
+<p>On the dashboard, open the launch Instance modal from either:-</p>
 <ul>
-<li>To launch an <strong>ephemeral instance</strong>, select "Boot from image" as your Instance Boot Source and choose your preffered image Image. <br><strong>NB.</strong> If you opened the Launch Instance modal from the images panel, the last two optiona will already have been set<br></li>
-<li>To launch a <strong>persistent instance</strong>, select "Boot from image (creates a new volume)" as your Instance Boot Source, choose your preffered image and enter a device size for your new block volume. Do not check the <code>Delete on Terminate:</code> checkbox lest you defeat the purpose of your persistent instance. </li>
+<li>The <a href="https://dash.kili.io/project/access_and_security/" target="_blank">access and security panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Access &amp; Security</code>) by clicking "Import keypair" button at the top right of the panel.</li>
+<li>The Access &amp; Security tab in the <a href="launch_an_instance.html">launch instance</a> modal form.</li>
 </ul>
 </li>
 <li>
-<p>Switch to the "Access &amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh <code>Authorized_Keys</code> file for key based authentication. If the drop down has no keys listed, click the <code>+</code> and follow the <a href="import_keypair" target="_blank">import keypair</a> guide.</p>
+<p>Once your have your Import Keypair modal, provide a name you will recognise for the key and paste the contents of your public key file into the public key text field.</p>
 </li>
 </ol>
-<h4>Post Creation</h4>
-<p>After launch, you probably want to assign a public IP to your instance.</p>
-<p>Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-</p>
-<ol>
-<li>Clicking "Associate IP" button in the VM's actions column if the VM is still spawning.</li>
-<li>Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.</li>
-</ol>
-<p>If spin up was successfull, you should be able to ssh into your VM using "ssh [USER]@[Public IP]" where:-</p>
-<p>[Public IP] is the public ip you associated with your instance and
-[USER] is the default image user provided by distro you chose.....which will be:-</p>
-<ul>
-<li>ubuntu (for ubuntu)</li>
-<li>debian (for debian)</li>
-<li>cloud-user (for CentOS)</li>
-</ul>
-<p>Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should access your instance by <code>ssh cloud-user@1.2.3.4</code> </p>
             </div>
             <!-- /.entry-content -->
         </article>

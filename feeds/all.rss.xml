@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kili</title><link>http://help.kili.io/</link><description></description><atom:link href="http://help.kili.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 16 Apr 2014 14:00:00 +0300</lastBuildDate><item><title>Importing key Pair</title><link>http://help.kili.io/import_key_pair.html</link><description>&lt;h4&gt;INTRO&lt;/h4&gt;
-&lt;p&gt;Key Pairs are how you login to your instance after it is launched.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kili</title><link>http://help.kili.io/</link><description></description><atom:link href="http://help.kili.io/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 16 Apr 2014 14:00:00 +0300</lastBuildDate><item><title>Importing keypairs</title><link>http://help.kili.io/import_keypair.html</link><description>&lt;h4&gt;INTRO&lt;/h4&gt;
+&lt;p&gt;Keypairs are how you login to your instance after it is launched.&lt;/p&gt;
 &lt;h4&gt;Pre-requisites:-&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;Active login session&lt;/li&gt;
@@ -35,7 +35,7 @@
 &lt;li&gt;
 &lt;p&gt;Once your have your Import Keypair modal, provide a name you will recognise for the key and paste the contents of your public key file into the public key text field.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 16 Apr 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-04-16:import_key_pair.html</guid><category>instances</category><category>launching</category><category>how to</category></item><item><title>Launching an Instance</title><link>http://help.kili.io/launch_an_instance.html</link><description>&lt;h4&gt;INTRO&lt;/h4&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 16 Apr 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-04-16:import_keypair.html</guid><category>instances</category><category>launching</category><category>how to</category></item><item><title>Launching an Instance</title><link>http://help.kili.io/launch_an_instance.html</link><description>&lt;h4&gt;INTRO&lt;/h4&gt;
 &lt;p&gt;This article illustrates how to spin up both persistent and ephemeral instances from the dashboard.&lt;br&gt;
 A Persistent instance uses a block storage volume for it's root file system. This allows the operating system files (and related user data) to survive termination of the associated instance.&lt;br&gt;
 An Ephemeral instance is the direct opposite of a Persistent instance. It's root volume will be destroyed once the instance is terminated!&lt;/p&gt;
@@ -62,7 +62,7 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the &lt;a href="import_key_pair.html" target="_blank"&gt;import key pair&lt;/a&gt; guide.&lt;/p&gt;
+&lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the &lt;a href="import_keypair" target="_blank"&gt;import keypair&lt;/a&gt; guide.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4&gt;Post Creation&lt;/h4&gt;

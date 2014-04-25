@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kili</title><link href="http://help.kili.io/" rel="alternate"></link><link href="http://help.kili.io/feeds/all-en.atom.xml" rel="self"></link><id>http://help.kili.io/</id><updated>2014-04-16T14:00:00+03:00</updated><entry><title>Importing key Pair</title><link href="http://help.kili.io/import_key_pair.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:import_key_pair.html</id><summary type="html">&lt;h4&gt;INTRO&lt;/h4&gt;
-&lt;p&gt;Key Pairs are how you login to your instance after it is launched.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kili</title><link href="http://help.kili.io/" rel="alternate"></link><link href="http://help.kili.io/feeds/all-en.atom.xml" rel="self"></link><id>http://help.kili.io/</id><updated>2014-04-16T14:00:00+03:00</updated><entry><title>Importing keypairs</title><link href="http://help.kili.io/import_keypair.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:import_keypair.html</id><summary type="html">&lt;h4&gt;INTRO&lt;/h4&gt;
+&lt;p&gt;Keypairs are how you login to your instance after it is launched.&lt;/p&gt;
 &lt;h4&gt;Pre-requisites:-&lt;/h4&gt;
 &lt;ol&gt;
 &lt;li&gt;Active login session&lt;/li&gt;
@@ -62,7 +62,7 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the &lt;a href="import_key_pair.html" target="_blank"&gt;import key pair&lt;/a&gt; guide.&lt;/p&gt;
+&lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the &lt;a href="import_keypair" target="_blank"&gt;import keypair&lt;/a&gt; guide.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;h4&gt;Post Creation&lt;/h4&gt;
