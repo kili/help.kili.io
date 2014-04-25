@@ -1,13 +1,13 @@
-Title: Importing key Pairs
+Title: Importing keypairs
 Date: 2014-04-16 14:00
 Tags: instances, launching, how to
-Slug: import_key_pair 
+Slug: import_keypair 
 Author: James Nzomo
-Summary: A "how to" on Importing a key pair 
+Summary: A "how to" on Importing a keypair 
 
 ####INTRO
 
-Key Pairs are how you login to your instance after it is launched.
+Keypairs are how you login to your instance after it is launched.
 
 ####Pre-requisites:-
 
