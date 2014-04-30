@@ -112,30 +112,41 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 </ol>
 <h4>Instructions</h4>
 <ol>
-<li>
-<p>Open the launch Instance modal from either:-</p>
-<ul>
+<li>Open the launch Instance modal from either:-<ul>
 <li>The <a href="https://dash.kili.io/project/instances/" target="_blank">instances panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Instances</code>) by clicking "launch instance" button at the top right of the panel.</li>
-<li>The <a href="https://dash.kili.io/project/images/" target="_blank">images panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Images</code>) by clicking the "launch" button inthe actions collumn of the desired image.</li>
+<li>The <a href="https://dash.kili.io/project/images/" target="_blank">images panel</a> (<code>Project</code> &rarr; <code>Compute</code> &rarr; <code>Images</code>) by clicking the "launch" button in the actions collumn of the desired image.</li>
 </ul>
 </li>
 <li>
 <p>In the "Launch Instance" modal form, provide an Instance Name and Flavor.<br></p>
 <ul>
-<li>To launch an <strong>ephemeral instance</strong>, select "Boot from image" as your Instance Boot Source and choose your preffered image Image. <br><strong>NB.</strong> If you opened the Launch Instance modal from the images panel, the last two optiona will already have been set<br></li>
-<li>To launch a <strong>persistent instance</strong>, select "Boot from image (creates a new volume)" as your Instance Boot Source, choose your preffered image and enter a device size for your new block volume. Do not check the <code>Delete on Terminate:</code> checkbox lest you defeat the purpose of your persistent instance. </li>
+<li>
+<p>To launch an <strong>ephemeral instance</strong>, select "Boot from image" as your Instance Boot Source and choose your preffered image Image. <br><strong>NB.</strong> If you opened the Launch Instance modal from the images panel, the last two optiona will already have been set<br>
+    <br><img src="img/launch_instance.png" height="500" width="460"></img><br></p>
+</li>
+<li>
+<p>To launch a <strong>persistent instance</strong>, select "Boot from image (creates a new volume)" as your Instance Boot Source, choose your preffered image and enter a device size for your new block volume. Do not check the <code>Delete on Terminate:</code> checkbox lest you defeat the purpose of your persistent instance.</p>
+</li>
 </ul>
 </li>
 <li>
-<p>Switch to the "Access &amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh <code>Authorized_Keys</code> file for key based authentication. If the drop down has no keys listed, click the <code>+</code> and follow the <a href="import_keypair" target="_blank">import keypair</a> guide.</p>
+<p>Switch to the "Access &amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh <code>Authorized_Keys</code> file for key based authentication. If the drop down has no keys listed, click the <code>+</code> and follow the <a href="import_keypair" target="_blank">import keypair</a> guide.
+    <br><img src="img/instance_access_n_security.png" height="1200" width="526"></img><br></p>
 </li>
 </ol>
 <h4>Post Creation</h4>
 <p>After launch, you probably want to assign a public IP to your instance.</p>
-<p>Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-</p>
+<p>Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-
+    <br><img src="img/assign_ip_spawning.png"> </img><br></p>
 <ol>
-<li>Clicking "Associate IP" button in the VM's actions column if the VM is still spawning.</li>
-<li>Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.</li>
+<li>
+<p>Clicking "Associate IP" button in the VM's actions column if the VM is still spawning.
+    <br><img src="img/assign_ip.png"></img><br></p>
+</li>
+<li>
+<p>Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.
+    <br><img src="img/allocate_fl_ip.png"></img><br></p>
+</li>
 </ol>
 <p>If spin up was successfull, you should be able to ssh into your VM using "ssh [USER]@[Public IP]" where:-</p>
 <p>[Public IP] is the public ip you associated with your instance and
@@ -145,7 +156,7 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 <li>debian (for debian)</li>
 <li>cloud-user (for CentOS)</li>
 </ul>
-<p>Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should access your instance by <code>ssh cloud-user@1.2.3.4</code> </p>
+<p>Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should access your instance by <code>ssh cloud-user@1.2.3.4</code></p>
             </div>
             <!-- /.entry-content -->
         </article>
