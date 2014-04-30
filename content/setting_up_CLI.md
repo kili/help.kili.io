@@ -70,11 +70,11 @@ This is how a typical RC file will look like.
     # With the addition of Keystone we have standardized on the term **tenant**
     # as the entity that owns the resources.
     export OS_TENANT_ID=66c2cf39ddd943ccba4f2dda0f6fdf1d
-    export OS_TENANT_NAME="RockersHack"
+    export OS_TENANT_NAME="DemoProject"
 
     # In addition to the owning entity (tenant), openstack stores the entity
     # performing the action as the **user**.
-    export OS_USERNAME="dguitarbite@gmail.com"
+    export OS_USERNAME="user@email.com"
 
     # With Keystone you pass the keystone password.
     echo "Please enter your OpenStack Password: "

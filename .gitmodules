@@ -1,6 +1,6 @@
 [submodule "kili"]
 	path = kili
-	url = git@github.com:dguitarbite/pelican-kili-theme.git
+	url = git@github.com:kili/pelican-kili-theme.git
 [submodule "pelican-kili-theme"]
 	path = pelican-kili-theme
-	url = git@github.com:dguitarbite/pelican-kili-theme.git
+	url = git@github.com:kili/pelican-kili-theme.git
