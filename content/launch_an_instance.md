@@ -37,13 +37,13 @@ Ephemeral instances are mostly usefull for one-off/short-lived applications wher
 After launch, you probably want to assign a public IP to your instance.
 
 Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-
-    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/assign_ip_spawning.png" height="" width=""></img><br>
+    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/assign_ip_spawning.png"> </img><br>
 
 1. Clicking "Associate IP" button in the VM's actions column if the VM is still spawning.
-    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/assign_ip.png" height="" width=""></img><br>
+    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/assign_ip.png"></img><br>
 
 2. Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.
-    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/allocate_fl_ip.png" height="" width=""></img><br>
+    <br><img src="https://raw.githubusercontent.com/kili/help.kili.io/master/content/img/allocate_fl_ip.png"></img><br>
 
 If spin up was successfull, you should be able to ssh into your VM using "ssh [USER]@[Public IP]" where:-
 
