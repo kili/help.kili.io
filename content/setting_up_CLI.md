@@ -85,7 +85,7 @@ This is how a typical RC file will look like.
 
 ####Access Kili Cloud via. Terminal/Programs
 
-Now you are ready to use OpenStack via. API. You should test it out using simple commands using your terminal. For more sophisticated usage, you can write a program in your favourate language and leverage the awesomeness of Kili cloud.
+Now you are ready to use OpenStack via. API. You should test it out using simple commands using your terminal. For more sophisticated usage, you can write a program in your favourite language and leverage the awesomeness of Kili cloud.
 
 1. Test Run
 Launch your terminal and follow the steps:
