@@ -210,4 +210,5 @@ Launch your terminal and follow the steps:
         |    region   |                           RegionOne                            |
         +-------------+----------------------------------------------------------------+
 
+
 Now you are ready to leverage the power of Open Source Cloud Kili which runs on OpenStack. You can import these client libraries inside your python modules to use them without any human interaction.
