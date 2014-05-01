@@ -15,7 +15,7 @@ To contribute, we reccomend you install:-
 
 ## INSTALLATION
 
-1. Fork the source - https://github.com/kili/help.kili.io/fork.
+1. Fork the source - <a href="https://github.com/kili/help.kili.io/fork" target="_blank">https://github.com/kili/help.kili.io/fork</a>.
 2. Clone your fork and cd into it.
 3. Create a virtualenv for your repo:- `mkvirtualenv -a . help.kili.io`.
 4. Install the remaining dependencies:-  `pip install -r requirements.txt`.
@@ -28,10 +28,8 @@ To contribute, we reccomend you install:-
 3. Add, commit and push your changes.
 4. Send us a pull request.
 5. ????
-6. Profit!!!11 .....Seriously! We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions target="_blank" >HIGH QUALITY</a> article.)
+6. Profit!!!!11 .....(We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions" target="_blank" >HIGH QUALITY</a> article.)
 
-We look forward to including your content.<br>
+We look forward to including your content.
+
 Cheers and enjoy contributing!
-
-
-Kili Team
