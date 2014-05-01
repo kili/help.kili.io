@@ -3,7 +3,7 @@ Kili Help Documentation
 
 ## INTRO
 This repository contains the sources used to build Kili's help documentation.<br>
-We use <a href="http://docs.getpelican.com" target="_blank">pelican</a> to build the contents of this repository into the site you see at http://help.kili.io.
+We use <a href="http://docs.getpelican.com" target="_blank">pelican</a> to build the contents of this repository into the site you see at <a href="http://help.kili.io">help.kili.io</a>
 
 ## PREREQUIESITES
 To contribute, we reccomend you install:-
@@ -15,7 +15,7 @@ To contribute, we reccomend you install:-
 
 ## INSTALLATION
 
-1. Fork the source - <a href="https://github.com/kili/help.kili.io/fork" target="_blank">https://github.com/kili/help.kili.io/fork</a>.
+1. <a href="https://github.com/kili/help.kili.io/fork" target="_blank">Click here to fork this Repo</a>.
 2. Clone your fork and cd into it.
 3. Create a virtualenv for your repo:- `mkvirtualenv -a . help.kili.io`.
 4. Install the remaining dependencies:-  `pip install -r requirements.txt`.
