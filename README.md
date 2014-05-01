@@ -3,14 +3,14 @@ Kili Help Documentation
 
 ## INTRO
 This repository contains the sources used to build Kili's help documentation.<br>
-We use [pelican](http://docs.getpelican.com/en/3.3.0/) to build the contents of this repository into the site you see at http://help.kili.io.
+We use <a href="http://docs.getpelican.com" target="_blank">pelican</a> to build the contents of this repository into the site you see at http://help.kili.io.
 
 ## PREREQUIESITES
 To contribute, we reccomend you install:-
 
-- [Python >= 2.7](https://www.python.org/download/releases/2.7), 
-- [PIP](http://www.pip-installer.org/en/latest/installing.html) and 
-- [virtualenv](http://www.virtualenv.org/en/latest/virtualenv.html)
+- <a href="https://www.python.org/download/releases/2.7" target="_blank">Python >= 2.7</a>
+- <a href="http://www.pip-installer.org/en/latest/installing.html" target="_blank">PIP</a>
+- <a href="http://www.virtualenv.org/en/latest/virtualenv.html" target="_blank">virtualenv</a>
 
 
 ## INSTALLATION
@@ -28,9 +28,9 @@ To contribute, we reccomend you install:-
 3. Add, commit and push your changes.
 4. Send us a pull request.
 5. ????
-6. Profit!!!11 .....Seriously! We will pay you 50 USD for each UNIQUE, [HIGH QUALITY](https://wiki.openstack.org/wiki/Documentation/Conventions) article.)
+6. Profit!!!11 .....Seriously! We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions target="_blank" >HIGH QUALITY</a> article.)
 
-We look forward to including your content.
+We look forward to including your content.<br>
 Cheers and enjoy contributing!
 
 
