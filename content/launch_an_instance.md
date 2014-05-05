@@ -18,7 +18,6 @@ Ephemeral instances are mostly usefull for one-off/short-lived applications wher
 1. Active login session
 2. Sufficient resource quota
 
-
 ####Instructions
 
 1. Open the launch Instance modal from either:-
@@ -44,6 +43,15 @@ Depending on the progress of your new VM's creation, manage your floating IP ass
 
 2. Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.
     <br><img src="img/allocate_fl_ip.png"></img><br>
+
+3. Tweak the "Security Groups" to allow ingress SSH access on port 22 of the VM.
+    * Go to <a href="https://dash.kili.io/project/access_and_security/?tab=access_security_tabs_security_groups_tab" target="_blank">Security Groups</a> (`Project` &rarr; `Compute` &rarr; `Access & Security`).
+        <br><img src="img/Security_Groups_AnS.png" height="600" width="358"></img><br>
+    * Click on `Manage Rules` button under Actions section for the security group `default` located below the `Create/Delete Security Group` button on the right side of the dashboard.
+    * Under the section `Manage Security Group Rules:default`, select button `Add Rule` on the top right corner of the dashboard.
+        <br><img src="img/Add_SSH_Rule.png" height="700" width="556"></img>
+    * As shown in the image below, select ( `Rule` &rarr; `SSH`, `Reomte` &rarr `Security Group` , `Security Group` &rarr `default`, `Ether Type` &rarr; `IPv4`).
+        <br><img src="img/Confirm_SSH_Rule.png" height="" width=""></img>
 
 If spin up was successfull, you should be able to ssh into your VM using "ssh [USER]@[Public IP]" where:-
 
