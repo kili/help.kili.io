@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kili</title><link href="http://help.kili.io/" rel="alternate"></link><link href="http://help.kili.io/feeds/all.atom.xml" rel="self"></link><id>http://help.kili.io/</id><updated>2014-04-26T18:00:00+03:00</updated><entry><title>Setting up Command Line Tools</title><link href="http://help.kili.io/setting_up_cli.html" rel="alternate"></link><updated>2014-04-26T18:00:00+03:00</updated><author><name>Pranav Salunke (dguitarbite)</name></author><id>tag:help.kili.io,2014-04-26:setting_up_cli.html</id><summary type="html">&lt;h4&gt;INTRO&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kili</title><link href="http://help.kili.io/" rel="alternate"></link><link href="http://help.kili.io/feeds/all.atom.xml" rel="self"></link><id>http://help.kili.io/</id><updated>2014-04-26T18:00:00+03:00</updated><entry><title>Setting up Command Line Tools</title><link href="http://help.kili.io/setting_up_cli.html" rel="alternate"></link><updated>2014-04-26T18:00:00+03:00</updated><author><name>Pranav Salunke (dguitarbite)</name></author><id>tag:help.kili.io,2014-04-26:setting_up_cli.html</id><summary type="html">&lt;h3&gt;INTRO&lt;/h3&gt;
 &lt;p&gt;OpenStack command-line interface (CLI) tools and the OpenStack dashboard are two ways to access and use various services provided by OpenStack.&lt;/p&gt;
 &lt;p&gt;The command-line clients for OpenStack can be installed directly from the Python Package Index (PyPI) (https://pypi.python.org/). Using PyPI is recommended over distro specific versions as the clients are under heavy development. It is very likely at any given time that the version of the packages distributed by your operating-system vendor are out of date.&lt;/p&gt;
 &lt;p&gt;The "pip" utility is used to manage package installation from the PyPI archive and is available in the "python-pip" package in most Linux distributions. Each OpenStack project has its own client, so depending on which services your site runs, install some or all of the following packages:&lt;/p&gt;
@@ -17,7 +17,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Pre-requisites&lt;/h4&gt;
+&lt;h3&gt;Pre-requisites&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Login Credentials&lt;ul&gt;
 &lt;li&gt;Username/Password&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;Instructions&lt;/h4&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Installing the Tools&lt;/p&gt;
@@ -106,7 +106,7 @@
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Password is not saved in plain text for security reasons. You will be prompted for password which will be stored in the environment variable OS_PASSWORD.&lt;/p&gt;
-&lt;h4&gt;Access Kili Cloud via. Terminal/Programs&lt;/h4&gt;
+&lt;h3&gt;Access Kili Cloud via. Terminal/Programs&lt;/h3&gt;
 &lt;p&gt;Now you are ready to use OpenStack via. API. You should test it out using simple commands using your terminal. For more sophisticated usage, you can write a program in your favourite language and leverage the awesomeness of Kili cloud.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Test Run
@@ -235,15 +235,15 @@ Launch your terminal and follow the steps:&lt;ul&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Now you are ready to leverage the power of Open Source Cloud Kili which runs on OpenStack. You can import these client libraries inside your python modules to use them without any human interaction.&lt;/p&gt;</summary><category term="instances"></category><category term="launching"></category><category term="CLI"></category></entry><entry><title>Importing keypairs</title><link href="http://help.kili.io/import_keypair.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:import_keypair.html</id><summary type="html">&lt;h4&gt;INTRO&lt;/h4&gt;
+&lt;p&gt;Now you are ready to leverage the power of Open Source Cloud Kili which runs on OpenStack. You can import these client libraries inside your python modules to use them without any human interaction.&lt;/p&gt;</summary><category term="instances"></category><category term="launching"></category><category term="CLI"></category></entry><entry><title>Importing keypairs</title><link href="http://help.kili.io/import_keypair.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:import_keypair.html</id><summary type="html">&lt;h3&gt;INTRO&lt;/h3&gt;
 &lt;p&gt;Key-based authentication is the most secure way to gain access to your Kili instance (provided you keep your private key under lock and key).&lt;br&gt;
 The others are password based and kerberos based SSH authentication which are disabled by default on the production images we provide for you.&lt;br&gt;
 This article will illustrate how to generate SSH Keys and import the resultant public key into your kili account when launching an instance and thereafter, allowing you to gain access to your new VM. &lt;/p&gt;
-&lt;h4&gt;Pre-requisites:-&lt;/h4&gt;
+&lt;h3&gt;Pre-requisites:-&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Active login session&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;Instructions&lt;/h4&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;If you do not have a keypair, generate one on:-&lt;/p&gt;
@@ -279,17 +279,17 @@ This article will illustrate how to generate SSH Keys and import the resultant p
 &lt;/li&gt;
 &lt;li&gt;Once your have your Import Keypair modal, provide a name you will recognise for the key and paste the contents of your public key file into the public key text field.&lt;br&gt;
     &lt;br&gt;&lt;img src="img/instance_access_n_security.png" alt="Import/Select Keypair" height="1500" width="658"&gt;&lt;/img&gt;&lt;br&gt;&lt;/li&gt;
-&lt;/ol&gt;</summary><category term="instances"></category><category term="launching"></category><category term="how to"></category></entry><entry><title>Launching an Instance</title><link href="http://help.kili.io/launch_an_instance.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:launch_an_instance.html</id><summary type="html">&lt;h4&gt;INTRO&lt;/h4&gt;
+&lt;/ol&gt;</summary><category term="instances"></category><category term="launching"></category><category term="how to"></category></entry><entry><title>Launching an Instance</title><link href="http://help.kili.io/launch_an_instance.html" rel="alternate"></link><updated>2014-04-16T14:00:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:help.kili.io,2014-04-16:launch_an_instance.html</id><summary type="html">&lt;h3&gt;INTRO&lt;/h3&gt;
 &lt;p&gt;This article illustrates how to spin up both persistent and ephemeral instances from the dashboard.&lt;br&gt;
 A Persistent instance uses a block storage volume for it's root file system. This allows the operating system files (and related user data) to survive termination of the associated instance.&lt;br&gt;
 An Ephemeral instance is the direct opposite of a Persistent instance. It's root volume will be destroyed once the instance is terminated!&lt;/p&gt;
 &lt;p&gt;Ephemeral instances are mostly usefull for one-off/short-lived applications whereas persistent instances will be prefferable for longterm applications.&lt;/p&gt;
-&lt;h4&gt;Pre-requisites:-&lt;/h4&gt;
+&lt;h3&gt;Pre-requisites:-&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Active login session&lt;/li&gt;
 &lt;li&gt;Sufficient resource quota&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;Instructions&lt;/h4&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;Open the launch Instance modal from either:-&lt;ul&gt;
 &lt;li&gt;The &lt;a href="https://dash.kili.io/project/instances/" target="_blank"&gt;instances panel&lt;/a&gt; (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Instances&lt;/code&gt;) by clicking "launch instance" button at the top right of the panel.&lt;/li&gt;
@@ -301,7 +301,7 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;To launch an &lt;strong&gt;ephemeral instance&lt;/strong&gt;, select "Boot from image" as your Instance Boot Source and choose your preffered image Image. &lt;br&gt;&lt;strong&gt;NB.&lt;/strong&gt; If you opened the Launch Instance modal from the images panel, the last two optiona will already have been set&lt;br&gt;
-    &lt;br&gt;&lt;img src="img/launch_instance.png" height="500" width="460"&gt;&lt;/img&gt;&lt;br&gt;&lt;/p&gt;
+    &lt;img src="img/launch_instance.png" height="500" width="460"&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;To launch a &lt;strong&gt;persistent instance&lt;/strong&gt;, select "Boot from image (creates a new volume)" as your Instance Boot Source, choose your preffered image and enter a device size for your new block volume. Do not check the &lt;code&gt;Delete on Terminate:&lt;/code&gt; checkbox lest you defeat the purpose of your persistent instance.&lt;/p&gt;
@@ -310,24 +310,25 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key from the Key Pair dropdown. The selected key will be added to the default user's ssh &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the &lt;a href="import_keypair" target="_blank"&gt;import keypair&lt;/a&gt; guide.
-    &lt;br&gt;&lt;img src="img/instance_access_n_security.png" height="1200" width="526"&gt;&lt;/img&gt;&lt;br&gt;&lt;/p&gt;
+    &lt;img src="img/instance_access_n_security.png" height="1200" width="526"&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4&gt;Post Creation&lt;/h4&gt;
+&lt;h3&gt;Post Creation&lt;/h3&gt;
 &lt;p&gt;After launch, you probably want to assign a public IP to your instance.&lt;/p&gt;
-&lt;p&gt;Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-
-    &lt;br&gt;&lt;img src="img/assign_ip_spawning.png"&gt; &lt;/img&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Clicking "Associate IP" button in the VM's actions column if the VM is still spawning.
-    &lt;br&gt;&lt;img src="img/assign_ip.png"&gt;&lt;/img&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Clicking "Associate IP" button in the VM's actions column if the VM is still spawning. (see below)
+    &lt;img src="img/assign_ip.png"&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.
-    &lt;br&gt;&lt;img src="img/allocate_fl_ip.png"&gt;&lt;/img&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;Selecting the "Associate IP" option of the "more" drop down menu in the actions collumn if the VM has successfully spun up.(see below)
+    &lt;img src="img/assign_ip_spawning.png"&gt; &lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;If spin up was successfull, you should be able to ssh into your VM using "ssh [USER]@[Public IP]" where:-&lt;/p&gt;
+&lt;p&gt;On the popup dialog, you can either select an existing IP (if available) from the drop down or allocate a new one from the &lt;code&gt;public-net&lt;/code&gt; pool by clickingt he &lt;code&gt;+&lt;/code&gt; button to the right of the drop down.
+&lt;img src="img/manage_fl_ip.png"&gt;&lt;/p&gt;
+&lt;p&gt;If both IP address assignment and spin up was successfull, it should now be possible to ssh into your VM using "ssh [USER]@[Public IP]" where:-&lt;/p&gt;
 &lt;p&gt;[Public IP] is the public ip you associated with your instance and
 [USER] is the default image user provided by distro you chose.....which will be:-&lt;/p&gt;
 &lt;ul&gt;
@@ -335,4 +336,17 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
 &lt;li&gt;debian (for debian)&lt;/li&gt;
 &lt;li&gt;cloud-user (for CentOS)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should access your instance by &lt;code&gt;ssh cloud-user@1.2.3.4&lt;/code&gt;&lt;/p&gt;</summary><category term="instances"></category><category term="launching"></category><category term="how to"></category></entry></feed>
+&lt;p&gt;Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should access your instance by &lt;code&gt;ssh cloud-user@1.2.3.4&lt;/code&gt;, provided you have the required security group rules in place. see below.
+&lt;br&gt;&lt;/p&gt;
+&lt;h3&gt;A note on Security Groups&lt;/h3&gt;
+&lt;p&gt;Security groups are sets of IP filter rules that are applied to an instance's networking. By default, for new accounts, the default security group denies access to port 22 from 0.0.0.0/0.&lt;/p&gt;
+&lt;p&gt;If you wish to ssh into your instance you should tweak the "Security Groups" to allow ingress SSH access on port 22 of the VM. This action is only done once for every new account.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;a href="https://dash.kili.io/project/access_and_security/?tab=access_security_tabs_security_groups_tab" target="_blank"&gt;Security Groups&lt;/a&gt; (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Access &amp;amp; Security&lt;/code&gt;).
+        &lt;img src="img/Security_Groups_AnS.png" height="1000" width="700"&gt;&lt;/li&gt;
+&lt;li&gt;Click on &lt;code&gt;Manage Rules&lt;/code&gt; button under Actions section for the security group &lt;code&gt;default&lt;/code&gt; located below the &lt;code&gt;Create/Delete Security Group&lt;/code&gt; button on the right side of the dashboard.&lt;/li&gt;
+&lt;li&gt;Under the section &lt;code&gt;Manage Security Group Rules:default&lt;/code&gt;, select button &lt;code&gt;Add Rule&lt;/code&gt; on the top right corner of the dashboard.
+        &lt;img src="img/Add_SSH_Rule.png" height="700" width="556"&gt;&lt;/li&gt;
+&lt;li&gt;As shown in the image below, select ( &lt;code&gt;Rule&lt;/code&gt; &amp;rarr; &lt;code&gt;SSH&lt;/code&gt;, &lt;code&gt;Reomte&lt;/code&gt; &amp;rarr; &lt;code&gt;Security Group&lt;/code&gt; , &lt;code&gt;Security Group&lt;/code&gt; &amp;rarr; &lt;code&gt;default&lt;/code&gt;, &lt;code&gt;Ether Type&lt;/code&gt; &amp;rarr; &lt;code&gt;IPv4&lt;/code&gt;).
+        &lt;img src="img/Confirm_SSH_Rule.png" &gt;&lt;/li&gt;
+&lt;/ul&gt;</summary><category term="instances"></category><category term="launching"></category><category term="how to"></category></entry></feed>
