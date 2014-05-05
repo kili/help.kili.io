@@ -26,3 +26,8 @@ code {
 body > footer {
     margin-bottom: 20px;
 }
+
+img{
+   display:block;
+   margin:15px auto;
+}

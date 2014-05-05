@@ -5,7 +5,7 @@ Slug: setting_up_cli
 Author: Pranav Salunke (dguitarbite)
 Summary: A "how to" on setting up CLI to use dash.kili.io via. Programs/API
 
-####INTRO
+###INTRO
 OpenStack command-line interface (CLI) tools and the OpenStack dashboard are two ways to access and use various services provided by OpenStack.
 
 The command-line clients for OpenStack can be installed directly from the Python Package Index (PyPI) (https://pypi.python.org/). Using PyPI is recommended over distro specific versions as the clients are under heavy development. It is very likely at any given time that the version of the packages distributed by your operating-system vendor are out of date.
@@ -25,7 +25,7 @@ The "pip" utility is used to manage package installation from the PyPI archive a
     * python-neutronclient (neutron CLI)
 
 
-####Pre-requisites
+###Pre-requisites
 
 1. Login Credentials
     * Username/Password
@@ -34,7 +34,7 @@ The "pip" utility is used to manage package installation from the PyPI archive a
     * It is provided by default for Linux and Mac. For windows you may have to install PowerShell.
 
 
-####Instructions
+###Instructions
 
 1.  Installing the Tools
     * To install (or upgrade) a package from the PyPI archive with pip, as root:
@@ -83,7 +83,7 @@ This is how a typical RC file will look like.
 
 **Note:** Password is not saved in plain text for security reasons. You will be prompted for password which will be stored in the environment variable OS_PASSWORD.
 
-####Access Kili Cloud via. Terminal/Programs
+###Access Kili Cloud via. Terminal/Programs
 
 Now you are ready to use OpenStack via. API. You should test it out using simple commands using your terminal. For more sophisticated usage, you can write a program in your favourite language and leverage the awesomeness of Kili cloud.
 

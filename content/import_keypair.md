@@ -5,17 +5,17 @@ Slug: import_keypair
 Author: James Nzomo
 Summary: A "how to" on Importing a keypair
 
-####INTRO
+###INTRO
 Key-based authentication is the most secure way to gain access to your Kili instance (provided you keep your private key under lock and key).<br>
 The others are password based and kerberos based SSH authentication which are disabled by default on the production images we provide for you.<br>
 This article will illustrate how to generate SSH Keys and import the resultant public key into your kili account when launching an instance and thereafter, allowing you to gain access to your new VM. 
 
-####Pre-requisites:-
+###Pre-requisites:-
 
 1. Active login session
 
 
-####Instructions
+###Instructions
 
 1. If you do not have a keypair, generate one on:-
     * Posix (Mac/Linux) by :-
