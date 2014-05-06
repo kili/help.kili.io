@@ -2,11 +2,11 @@ Kili Help Documentation
 ============
 
 ## INTRO
-This repository contains the sources used to build Kili's help documentation.<br>
+This repository contains the sources used to build [Kili's](http://kili.io)  help documentation.<br>
 We use <a href="http://docs.getpelican.com" target="_blank">pelican</a> to build the contents of this repository into the site you see at <a href="http://help.kili.io">help.kili.io</a>
 
 ## PREREQUIESITES
-To contribute, we reccomend you install:-
+To contribute, we recommend you install:-
 
 - <a href="https://www.python.org/download/releases/2.7" target="_blank">Python >= 2.7</a>
 - <a href="http://www.pip-installer.org/en/latest/installing.html" target="_blank">PIP</a>
@@ -27,8 +27,8 @@ To contribute, we reccomend you install:-
 2. Add or edit markdown articles in the content folder.
 3. Add, commit and push your changes.
 4. Send us a pull request.
-5. ????
-6. Profit!!!!11 .....(We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions" target="_blank" >HIGH QUALITY</a> article.)
+5. We'll work with you to make it better.  The most important thing is the article, don't worry if you can't get Pelican to work - just submit the pull request with the article in Markdown format and we an go from there.
+6. Profit!!!! .....(We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions" target="_blank" >HIGH QUALITY</a> article.)
 
 We look forward to including your content.
 
