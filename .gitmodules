@@ -1,7 +1,3 @@
 [submodule "pelican-kili-theme"]
 	path = pelican-kili-theme
 	url = git@github.com:kili/pelican-kili-theme.git
-[submodule "output"]
-	path = output
-	url = git@github.com:kili/help.kili.io.git
-    branch = gh-pages
