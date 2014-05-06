@@ -3,7 +3,7 @@ Date: 2014-04-16 14:00
 Tags: instances, launching, how to
 Slug: import_keypair
 Author: James Nzomo
-Summary: A "how to" on Importing a keypair
+Summary: Uploading your public key is a necessary step to getting ssh access to your instances.  This is a far more secure method of authentication than password-based auth and is the only method enabled by default.
 
 ###INTRO
 Key-based authentication is the most secure way to gain access to your Kili instance (provided you keep your private key under lock and key).<br>

@@ -3,7 +3,7 @@ Date: 2014-04-26 18:00
 Tags: instances, launching, CLI
 Slug: setting_up_cli
 Author: Pranav Salunke (dguitarbite)
-Summary: A "how to" on setting up CLI to use dash.kili.io via. Programs/API
+Summary: Set up the command line tools in order to really leverage Kili to the max.
 
 ###INTRO
 OpenStack command-line interface (CLI) tools and the OpenStack dashboard are two ways to access and use various services provided by OpenStack.

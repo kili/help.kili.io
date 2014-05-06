@@ -3,7 +3,7 @@ Date: 2014-04-16 14:00
 Tags: instances, launching, how to
 Slug: launch_an_instance
 Author: James Nzomo
-Summary: A "how to" on launching an instance at dash.kili.io
+Summary: One of the core parts of the Kili cloud is the ability to launch virtual machines on our cloud (and of course, for you to have those machines located in Kenya).  This tutorial walks you through the basics of setting up your first instance. 
 
 ###INTRO
 This article illustrates how to spin up both persistent and ephemeral instances from the dashboard.<br>
