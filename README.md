@@ -30,6 +30,11 @@ To contribute, we recommend you install:-
 5. We'll work with you to make it better.  The most important thing is the article, don't worry if you can't get Pelican to work - just submit the pull request with the article in Markdown format and we an go from there.
 6. Profit!!!! .....(We will pay you 50 USD for each UNIQUE, <a href="https://wiki.openstack.org/wiki/Documentation/Conventions" target="_blank" >HIGH QUALITY</a> article.)
 
+## Update gh-pages
+1. Change the branch to gh-pages `$git checkout gh-pages`.
+1. Process the files `$ pelican content`.
+2. Grab all the changes and update the gh-pages branch `$ ghp-import output`.
+3. Push to gh-pages branch for publishing `git push origin gh-pages`.
 We look forward to including your content.
 
 Cheers and enjoy contributing!
