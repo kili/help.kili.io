@@ -1,0 +1,33 @@
+body {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-size: 15px;
+    color: #666;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oxygen', Helvetica, sans-serif;
+    color: #3E4956;
+    text-rendering: optimizelegibility;
+    line-height: 1.25;
+}
+
+.navbar-brand{
+    font-family: Oxygen, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+code {
+    color: #254ec7;
+    background-color: #f2f4f9;
+}
+
+body > footer {
+    margin-bottom: 20px;
+}
+
+img{
+   display:block;
+   margin:15px auto;
+}
