@@ -68,6 +68,4 @@ If you wish to ssh into your instance you should tweak the "Security Groups" to 
 * Click on `Manage Rules` button under Actions section for the security group `default` located below the `Create/Delete Security Group` button on the right side of the dashboard.
 * Under the section `Manage Security Group Rules:default`, select button `Add Rule` on the top right corner of the dashboard.
         <img src="img/Add_SSH_Rule.png" height="700" width="556">
-* As shown in the image below, select ( `Rule` &rarr; `SSH`, `Reomte` &rarr; `Security Group` , `Security Group` &rarr; `default`, `Ether Type` &rarr; `IPv4`).
-        <img src="img/Confirm_SSH_Rule.png" >
-
+* As shown in the image above, select ( `Rule` &rarr; `SSH`, `Remote` &rarr; `CIDR` , `CIDR` &rarr; `0.0.0.0/0`).
