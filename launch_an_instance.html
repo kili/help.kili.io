@@ -37,10 +37,8 @@
 
         <link href="./css/kili.css" rel="stylesheet">
 
-        <link href="./feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+        <link href="./feeds/all.rss.xml" type="application/atom+xml" rel="alternate"
               title="Kili ATOM Feed"/>
-        <link href="./feeds/all.rss.xml" type="application/rss+xml" rel="alternate"
-              title="Kili RSS Feed"/>
 
 </head>
 <body>
@@ -170,6 +168,7 @@ An Ephemeral instance is the direct opposite of a Persistent instance. It's root
         <img src="img/Add_SSH_Rule.png" height="700" width="556"></li>
 <li>As shown in the image above, select ( <code>Rule</code> &rarr; <code>SSH</code>, <code>Remote</code> &rarr; <code>CIDR</code> , <code>CIDR</code> &rarr; <code>0.0.0.0/0</code>).</li>
 </ul>
+<p>At this point you should be capable of accessing your instances via ssh on port 22. If you would like to open up a different port, feel free to adapt the steps by sellecting a different protocol from the <code>Rule:</code> drop down or sellecting a custom rule on the same for a custom port.</p>
             </div>
             <!-- /.entry-content -->
         </article>
