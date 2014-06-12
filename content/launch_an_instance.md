@@ -69,3 +69,6 @@ If you wish to ssh into your instance you should tweak the "Security Groups" to 
 * Under the section `Manage Security Group Rules:default`, select button `Add Rule` on the top right corner of the dashboard.
         <img src="img/Add_SSH_Rule.png" height="700" width="556">
 * As shown in the image above, select ( `Rule` &rarr; `SSH`, `Remote` &rarr; `CIDR` , `CIDR` &rarr; `0.0.0.0/0`).
+
+At this point you should be capable of accessing your instances via ssh on port 22. If you would like to open up a different port, feel free to adapt the steps by sellecting a different protocol from the `Rule:` drop down or sellecting a custom rule on the same for a custom port.
+
