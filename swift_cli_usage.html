@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Working with object storage (swift) from the CLI - Kili</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Kili" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Working with object storage (swift) from the CLI"/>
+            <meta property="og:url" content="./swift_cli_usage.html"/>
+            <meta property="og:description" content="A &#34;how to&#34; on working with the Kili Cloud object storage service (swift) from the CLI"/>
+            <meta property="article:published_time" content="2014-08-24" />
+                <meta property="article:section" content="misc" />
+                <meta property="article:tag" content="swift" />
+                <meta property="article:tag" content="how to" />
+                <meta property="article:author" content="James Nzomo" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+    
+    <!-- Custom Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+
+        <link href="./css/kili.css" rel="stylesheet">
+
+        <link href="./feeds/all.rss.xml" type="application/atom+xml" rel="alternate"
+              title="Kili ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Kili            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./swift_cli_usage.html"
+                       rel="bookmark"
+                       title="Permalink to Working with object storage (swift) from the CLI">
+                        Working with object storage (swift) from the CLI
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+            <a href="./author/james-nzomo.html"><i class="fa fa-user"></i> James Nzomo</a> | 
+    <span class="published">
+        <time datetime="2014-08-24T14:00:00"> August 24, 2014</time>
+    </span>
+
+
+
+ | 
+	<a href="./tag/swift.html">swift</a>
+        /
+	<a href="./tag/how-to.html">how to</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h3>INTRO</h3>
+<p>This help article will illustrate how to work with the Kili Cloud object storage service (swift) from the CLI.</p>
+<h3>Prerequisites</h3>
+<ol>
+<li>A kili account</li>
+<li>Basic knowledge of unix terminal </li>
+</ol>
+<h3>Installation</h3>
+<p>We recommend installing the swift client (and all other python packages) via 
+<a href="http://en.wikipedia.org/wiki/Pip_(package_manager)">pip</a>. You can also install 
+the swift client from your distro's software repositories but chances are 
+that it will be out of date.  </p>
+<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">swiftclient</span>
+</pre></div>
+
+
+<h3>Authentication</h3>
+<p>We use Keystone - The official OpenStack Identity Service - for 
+authentication. For swift client to authenticate to your account, you have to 
+install the keystone client.  </p>
+<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">keystoneclient</span>
+</pre></div>
+
+
+<p>To facilitate authentication, we provide you with an rc script that the swift 
+client will use to access your account. 
+<a href="https://dash.kili.io/project/access_and_security/api_access/openrc/">Click here</a> 
+to save it (login if prompted).<br />
+Once saved, run <code>source XXX-openrc.sh</code> and enter your kili password when prompted.  </p>
+<p>Test if it works by running <code>swift stat</code> which will print your account summary, that looks like what we have below.</p>
+<div class="highlight"><pre>       <span class="nl">Account:</span> <span class="n">AUTH_XXXXXXXXXXXXXXXXXXXXXXXX</span>
+    <span class="nl">Containers:</span> <span class="mi">0</span>
+       <span class="nl">Objects:</span> <span class="mi">0</span>
+         <span class="nl">Bytes:</span> <span class="mi">0</span>
+ <span class="n">Accept</span><span class="o">-</span><span class="n">Ranges</span><span class="o">:</span> <span class="n">bytes</span>
+        <span class="nl">Server:</span> <span class="n">nginx</span><span class="o">/</span><span class="mf">1.4.7</span>
+    <span class="nl">Connection:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+   <span class="n">X</span><span class="o">-</span><span class="n">Timestamp</span><span class="o">:</span> <span class="mf">123456789123.123456</span>
+    <span class="n">X</span><span class="o">-</span><span class="n">Trans</span><span class="o">-</span><span class="n">Id</span><span class="o">:</span> <span class="n">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span>
+  <span class="nl">ContenType:</span> <span class="n">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="n">utf</span><span class="o">-</span><span class="mi">8</span>
+</pre></div>
+
+
+<h3>Commands</h3>
+<p>Swift client provides 6 sub-commands that you you use to manage your data. 
+From the <a href="http://docs.openstack.org/user-guide/content/swift_commands.html">official swift client documentation</a>, they are:-</p>
+<ul>
+<li><code>stat</code> - Displays information for the account, container, or object.</li>
+<li><code>list</code> - Lists the containers for the account or the objects for a container.</li>
+<li><code>post</code> - Updates meta information for the account, container, or object.</li>
+<li><code>upload</code> - Uploads files or directories to the given container.</li>
+<li><code>download</code> - Download objects from containers.</li>
+<li><code>delete</code> - Delete a container or objects within a container.</li>
+</ul>
+<p>You can also run <code>swift help</code> for more. </p>
+<h3>Working with containers</h3>
+<p>Containers are name spaces used to group objects in an account. You can choose to 
+create them as private, for 'internal' use, or as public, to share content over
+network or the INTERNET.  </p>
+<p>Usage examples:- <br />
+<code>swift post CONTAINER_NAME</code> creates a container with the name <code>CONTAINER_NAME</code>.<br />
+<code>swift list</code> prints out a list of your containers.<br />
+<code>swift stat CONTAINER_NAME</code> prints out a summary of an existing container called <code>CONTAINER_NAME</code>.<br />
+<code>swift delete CONTAINER_NAME</code> deletes an existing container called <code>CONTAINER_NAME</code>.  </p>
+<h3>Working with objects</h3>
+<p>Objects are the actual data stored in swift. You can think of them as files on a 
+conventional file system. These could be your documents, photos, videos, music, 
+disk image snapshots, log files.....the list goes on.  </p>
+<p>Usage examples:- <br />
+<code>swift upload CONTAINER_NAME foo.jpg</code> uploads a file <code>foo.jpg</code> to an existing container. 
+For larger files such as disk images, you may want to upload in chunks by passing an 
+extra parameter <code>-S CHUNK_SIZE</code>.<br />
+<code>swift stat CONTAINER_NAME foo.jpg</code> prints out info on a previously uploaded object 
+<code>foo.jpg</code> inside an existing container.<br />
+<code>swift list CONTAINER_NAME</code> prints a list of objects in the named container.  </p>
+<h3>Further reading</h3>
+<ul>
+<li>https://wiki.openstack.org/wiki/Swift</li>
+<li>http://docs.openstack.org/user-guide/content/swift_commands.html</li>
+<li>http://docs.openstack.org/developer/swift/</li>
+<li>http://nairobilug.or.ke/2014/07/swiftclient-openstack.html</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+	 <div class="col-xs-10">  
+		 &copy; 2014 Kili.io, Inc &#9729; 
+		 <a href="http://kili.io/#pricing">Pricing</a> &#9729;
+		 <a href="https://dash.kili.io">Dashboard</a> &#9729;
+		 <a href="https://github.com/kili/help.kili.io">Write an Article</a> 
+	 </div>
+	 </div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+</body>
+</html>
