@@ -53,7 +53,6 @@ GITHUB_URL = "http://github.com/kili/help.kili.io"
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = "C"
-DEFAULT_PAGINATION = 4
 DEFAULT_DATE = (1969, 12, 31, 23, 59, 59) 
 THEME = "pelican-kili-theme"
 HIDE_SIDEBAR = True
