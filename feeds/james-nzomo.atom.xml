@@ -283,7 +283,9 @@ possible to ssh into your VM using "ssh [USER]@[Public IP]" where:-&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;ubuntu (for ubuntu)&lt;/li&gt;
 &lt;li&gt;debian (for debian)&lt;/li&gt;
-&lt;li&gt;cloud-user (for CentOS)&lt;/li&gt;
+&lt;li&gt;cloud-user (for CentOS 6.5)&lt;/li&gt;
+&lt;li&gt;centos (for CentOS 7)&lt;/li&gt;
+&lt;li&gt;coreos (for CoreOS Alpha)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should 
 access your instance by &lt;code&gt;ssh cloud-user@1.2.3.4&lt;/code&gt;, provided you have the required 
