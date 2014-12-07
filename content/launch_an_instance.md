@@ -81,7 +81,10 @@ possible to ssh into your VM using "ssh [USER]@[Public IP]" where:-
 
 * ubuntu (for ubuntu)
 * debian (for debian)
-* cloud-user (for CentOS)
+* cloud-user (for CentOS 6.5)
+* centos (for CentOS 7)
+* coreos (for CoreOS Alpha)
+
 
 Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should 
 access your instance by `ssh cloud-user@1.2.3.4`, provided you have the required 
