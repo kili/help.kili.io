@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kili</title><link>http://help.kili.io/</link><description></description><atom:link href="http://help.kili.io/feeds/james-nzomo.rss.xml" rel="self"></atom:link><lastBuildDate>Thu, 03 Dec 2015 12:00:00 +0300</lastBuildDate><item><title>Backing up your data (snapshot and download)</title><link>http://help.kili.io/snapshot_and_download.html</link><description>&lt;h3&gt;INTRO&lt;/h3&gt;
+&lt;p&gt;This is a step by step guide on how to retrieve your data (volume and instance snapshots) for migration to a different cloud provider.&lt;br /&gt;
+This is only necessary if you require the entire volume(s). Feel free to be more surgical and [ &lt;a href="https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html"&gt;mysql&lt;/a&gt; | &lt;a href="http://www.postgresql.org/docs/current/static/app-pg-dumpall.html"&gt;pg_&lt;/a&gt; ]dump then &lt;a href="https://en.wikipedia.org/wiki/Secure_copy"&gt;scp&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Rsync"&gt;rsync&lt;/a&gt; the data out of your instances or mounted volumes.  &lt;/p&gt;
+&lt;h3&gt;Step 1&lt;/h3&gt;
+&lt;p&gt;Visit &lt;a href="https://dash.kili.io/project/instances/" target="_blank"&gt;Instances Dashboard&lt;/a&gt; and create a snapshot of the instance you'd like to back up, specify a snapshot name, click "create snapshot". Give it time to complete.&lt;/p&gt;
+&lt;h3&gt;Step 1.5&lt;/h3&gt;
+&lt;p&gt;Visit &lt;a href="https://dash.kili.io/project/volumes/" target="_blank"&gt;Volumes Dashboard&lt;/a&gt; and do the same as above for your volume(s). (Snapshot action is in the "more" menu for each row to the far right).&lt;/p&gt;
+&lt;h3&gt;Step 2&lt;/h3&gt;
+&lt;p&gt;Make sure you have the glance client installed (preferably via &lt;a href="https://pip.pypa.io/en/latest/installing/"&gt;pip&lt;/a&gt;):-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;glanceclient&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Step 3&lt;/h3&gt;
+&lt;p&gt;&lt;a href="https://dash.kili.io/project/access_and_security/api_access/openrc/"&gt;CTRL-Click here to Download Your OpenStack RC Credentials File&lt;/a&gt; and &lt;a href="https://en.wikipedia.org/wiki/Source_(command)"&gt;source&lt;/a&gt; it. If you are on windows, look at the env vars therein and set them manually.  &lt;/p&gt;
+&lt;h3&gt;Step 4&lt;/h3&gt;
+&lt;p&gt;Find the snapshot you need&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;glance&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;list&lt;/span&gt;
+
+&lt;span class="o"&gt;+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+&lt;/span&gt;
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;                                   &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Name&lt;/span&gt;                          &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Disk&lt;/span&gt; &lt;span class="n"&gt;Format&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Container&lt;/span&gt; &lt;span class="n"&gt;Format&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Size&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Status&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+&lt;span class="o"&gt;+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+&lt;/span&gt;
+
+&lt;span class="o"&gt;-----&lt;/span&gt; &lt;span class="n"&gt;Output&lt;/span&gt; &lt;span class="n"&gt;Truncated&lt;/span&gt; &lt;span class="o"&gt;-----&lt;/span&gt;
+
+&lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;ec56a99&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b713&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;d4c&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b3de&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6219890857&lt;/span&gt;&lt;span class="n"&gt;dc&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;Your_Snapshot&lt;/span&gt;                &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;qcow2&lt;/span&gt;       &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;bare&lt;/span&gt;             &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="mi"&gt;7591559168&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;active&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;
+
+&lt;span class="o"&gt;-----&lt;/span&gt; &lt;span class="n"&gt;Output&lt;/span&gt; &lt;span class="n"&gt;Truncated&lt;/span&gt; &lt;span class="o"&gt;-----&lt;/span&gt;
+
+&lt;span class="o"&gt;+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Step 5&lt;/h3&gt;
+&lt;p&gt;Download your snapshot. Repeat for all the snapshots you have/need.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;you&lt;/span&gt;&lt;span class="err"&gt;@&lt;/span&gt;&lt;span class="n"&gt;your&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;:~&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;glance&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;api&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;download&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="n"&gt;ec56a99&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b713&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="n"&gt;d4c&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b3de&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;6219890857&lt;/span&gt;&lt;span class="n"&gt;dc&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;progress&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;Your_Snapshot&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;
+&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;=============================&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;In conclusion&lt;/h2&gt;
+&lt;p&gt;Once you've successfully accomplished the above, you can then upload (and mount) your snapshots on most other cloud providers out there that support &lt;a href="http://www.linux-kvm.org/page/Qcow2"&gt;QCOW2&lt;/a&gt; format images.
+For swift/object storage backup, see &lt;a href="swift_cli_usage"&gt;swift_cli_usage&lt;/a&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Thu, 03 Dec 2015 12:00:00 +0300</pubDate><guid>tag:help.kili.io,2015-12-03:snapshot_and_download.html</guid><category>glance</category><category>swift</category><category>snapshot</category><category>backup</category><category>how to</category></item><item><title>Preparing an Image for use on the Kili Cloud</title><link>http://help.kili.io/Creating_an_Image.html</link><description>&lt;h3&gt;INTRO&lt;/h3&gt;
+&lt;p&gt;This help article will illustrate how to prepare an existing image for use on Kili.&lt;/p&gt;
+&lt;h3&gt;Prerequisites&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;A kili account&lt;/li&gt;
+&lt;li&gt;For amd64 images, a cpu with virtualization extensions 
+Intel VT or AMD-V. VIA VT may also work.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Getting an image&lt;/h3&gt;
+&lt;p&gt;An image is a virtual disk file with an operating system pre-installed on it. 
+You can either download one from the many image providers out there or 
+create one using virtualization software such as virtualbox or lib-virt.&lt;/p&gt;
+&lt;p&gt;The Kili Cloud uses qemu-KVM as it's hypervisor. This means that you will 
+get better compatibility by using qcow2 as your image format.
+You may also choose to go with raw disk format if you prefer performance 
+over other features such as copy on write.
+Using qemu also makes it possible for you to run images created for non-x86 
+architectures (PPC, ARM, SPARK, MIPS...etc) on Kili.&lt;/p&gt;
+&lt;p&gt;If your virtualization app does not support qcow2, you can convert its native
+image type to qcow2 using the 
+&lt;a href="http://docs.openstack.org/image-guide/content/ch_converting.html"&gt;qemu-img convert command&lt;/a&gt; before uploading.&lt;/p&gt;
+&lt;h3&gt;Cloud init&lt;/h3&gt;
+&lt;p&gt;Before you can import your image to the cloud, it would be a good idea to 
+install cloud-init on it. 
+From &lt;a href="http://cloudinit.readthedocs.org/en/latest/"&gt;readthedocs&lt;/a&gt;, "Cloud-init 
+is the de-facto multi-distribution package that handles early initialization 
+of a cloud instance." Early initialization involves preparing instances during
+boot up for use on the cloud.&lt;br /&gt;
+From the &lt;a href="http://docs.openstack.org/image-guide/
+content/ch_openstack_images.html"&gt;Official OpenStack docs&lt;/a&gt;, 
+some of these preparations involve:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adding your public key (ssh) to the default user's authorized_keys&lt;/li&gt;
+&lt;li&gt;Disk Partitioning and resizing&lt;/li&gt;
+&lt;li&gt;Handling user-submitted data such as host-names&lt;/li&gt;
+&lt;li&gt;Setting repositories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can configure some of the above by editing &lt;code&gt;/etc/cloud/cloud.cfg&lt;/code&gt;. 
+For an example, with repositories, feel free to use the following 
+as your primary mirrors:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ubuntu (http://mirror.internal.ke-nbo-1a.kili.io/ubuntu/), &lt;/li&gt;
+&lt;li&gt;Debian (http://mirror.internal.ke-nbo-1a.kili.io/debian/)&lt;/li&gt;
+&lt;li&gt;and CentOS (http://mirror.internal.ke-nbo-1a.kili.io/centos/)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can set them as shown in the cloud-init 
+&lt;a href="http://cloudinit.readthedocs.org/en/latest/topics/examples.html#add-apt-repositories"&gt;apt-repo example&lt;/a&gt; 
+and the &lt;a href="http://cloudinit.readthedocs.org/en/latest/topics/examples.html#adding-a-yum-repository"&gt;yum-repo example&lt;/a&gt; &lt;/p&gt;
+&lt;h3&gt;The Boot log&lt;/h3&gt;
+&lt;p&gt;It will also be a good idea for your instances to boot verbosely 
+by writing the boot log to the console. If you are building a Linux 
+image, edit your &lt;code&gt;/boot/grub/grub.cfg&lt;/code&gt; to pass the &lt;code&gt;console=ttyS0&lt;/code&gt; 
+parameter to your kernel and set &lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT="console=ttyS0"&lt;/code&gt; 
+in your &lt;code&gt;/etc/default/grub&lt;/code&gt;file.&lt;br /&gt;
+Update your grub configuration by running &lt;code&gt;update-grub&lt;/code&gt; for debian-based distros or &lt;code&gt;grub2-mkconfig -o /boot/grub2/grub.cfg&lt;/code&gt; for fedora-based distros.&lt;/p&gt;
+&lt;h3&gt;Uploading your image&lt;/h3&gt;
+&lt;p&gt;To upload your image via the dashboard, visit this url :- 
+https://dash.kili.io/project/images/create/ (login if you are prompted to), 
+set the appropriate options and submit.   &lt;/p&gt;
+&lt;p&gt;To upload your image from the command line, see 
+&lt;a href="setting_up_cli.html"&gt;setting up cli tools&lt;/a&gt; for installing and 
+configuring python-glanceclient for use with your account.  &lt;/p&gt;
+&lt;p&gt;Here is an example of how to add an image from the cli:-&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;glance&lt;/span&gt; &lt;span class="n"&gt;image&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;create&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;Image name&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt; &lt;span class="n"&gt;qcow2&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;container&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt; &lt;span class="n"&gt;bare&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;disk&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ram&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt; &lt;span class="n"&gt;IMAGENAME&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;qcow2&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;is&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;public&lt;/span&gt; &lt;span class="n"&gt;False&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The above command that adds a qcow2 image for an instance that requires 
+a minimum of 2GB for ram and 30 GB for root as a private image 
+(no sharing with other kili tenants).&lt;br /&gt;
+Specifying these requirements facilitates forcing the right flavors when 
+spinning up an instance from the image.&lt;/p&gt;
+&lt;h3&gt;Further reading&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;http://cloudinit.readthedocs.org/en/latest/&lt;/li&gt;
+&lt;li&gt;http://docs.openstack.org/image-guide/content/ch_obtaining_images.html&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Sun, 24 Aug 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-08-24:Creating_an_Image.html</guid><category>images</category><category>how to</category></item><item><title>Working with object storage (swift) from the CLI</title><link>http://help.kili.io/swift_cli_usage.html</link><description>&lt;h3&gt;INTRO&lt;/h3&gt;
+&lt;p&gt;This help article will illustrate how to work with the Kili Cloud object storage service (swift) from the CLI.&lt;/p&gt;
+&lt;h3&gt;Prerequisites&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;A kili account&lt;/li&gt;
+&lt;li&gt;Basic knowledge of unix terminal &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;We recommend installing the swift client (and all other python packages) via 
+&lt;a href="http://en.wikipedia.org/wiki/Pip_(package_manager)"&gt;pip&lt;/a&gt;. You can also install 
+the swift client from your distro's software repositories but chances are 
+that it will be out of date.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;swiftclient&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Authentication&lt;/h3&gt;
+&lt;p&gt;We use Keystone - The official OpenStack Identity Service - for 
+authentication. For swift client to authenticate to your account, you have to 
+install the keystone client.  &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;keystoneclient&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To facilitate authentication, we provide you with an rc script that the swift 
+client will use to access your account. 
+&lt;a href="https://dash.kili.io/project/access_and_security/api_access/openrc/"&gt;Click here&lt;/a&gt; 
+to save it (login if prompted).&lt;br /&gt;
+Once saved, run &lt;code&gt;source XXX-openrc.sh&lt;/code&gt; and enter your kili password when prompted.  &lt;/p&gt;
+&lt;p&gt;Test if it works by running &lt;code&gt;swift stat&lt;/code&gt; which will print your account summary, that looks like what we have below.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;       &lt;span class="nl"&gt;Account:&lt;/span&gt; &lt;span class="n"&gt;AUTH_XXXXXXXXXXXXXXXXXXXXXXXX&lt;/span&gt;
+    &lt;span class="nl"&gt;Containers:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+       &lt;span class="nl"&gt;Objects:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+         &lt;span class="nl"&gt;Bytes:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+ &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ranges&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;bytes&lt;/span&gt;
+        &lt;span class="nl"&gt;Server:&lt;/span&gt; &lt;span class="n"&gt;nginx&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;1.4.7&lt;/span&gt;
+    &lt;span class="nl"&gt;Connection:&lt;/span&gt; &lt;span class="n"&gt;keep&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;alive&lt;/span&gt;
+   &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Timestamp&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mf"&gt;123456789123.123456&lt;/span&gt;
+    &lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Trans&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Id&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&lt;/span&gt;
+  &lt;span class="nl"&gt;ContenType:&lt;/span&gt; &lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;plain&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;utf&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Commands&lt;/h3&gt;
+&lt;p&gt;Swift client provides 6 sub-commands that you you use to manage your data. 
+From the &lt;a href="http://docs.openstack.org/user-guide/content/swift_commands.html"&gt;official swift client documentation&lt;/a&gt;, they are:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stat&lt;/code&gt; - Displays information for the account, container, or object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;list&lt;/code&gt; - Lists the containers for the account or the objects for a container.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;post&lt;/code&gt; - Updates meta information for the account, container, or object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;upload&lt;/code&gt; - Uploads files or directories to the given container.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;download&lt;/code&gt; - Download objects from containers.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;delete&lt;/code&gt; - Delete a container or objects within a container.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You can also run &lt;code&gt;swift help&lt;/code&gt; for more. &lt;/p&gt;
+&lt;h3&gt;Working with containers&lt;/h3&gt;
+&lt;p&gt;Containers are name spaces used to group objects in an account. You can choose to 
+create them as private, for 'internal' use, or as public, to share content over
+network or the INTERNET.  &lt;/p&gt;
+&lt;p&gt;Usage examples:- &lt;br /&gt;
+&lt;code&gt;swift post CONTAINER_NAME&lt;/code&gt; creates a container with the name &lt;code&gt;CONTAINER_NAME&lt;/code&gt;.&lt;br /&gt;
+&lt;code&gt;swift list&lt;/code&gt; prints out a list of your containers.&lt;br /&gt;
+&lt;code&gt;swift stat CONTAINER_NAME&lt;/code&gt; prints out a summary of an existing container called &lt;code&gt;CONTAINER_NAME&lt;/code&gt;.&lt;br /&gt;
+&lt;code&gt;swift delete CONTAINER_NAME&lt;/code&gt; deletes an existing container called &lt;code&gt;CONTAINER_NAME&lt;/code&gt;.  &lt;/p&gt;
+&lt;h3&gt;Working with objects&lt;/h3&gt;
+&lt;p&gt;Objects are the actual data stored in swift. You can think of them as files on a 
+conventional file system. These could be your documents, photos, videos, music, 
+disk image snapshots, log files.....the list goes on.  &lt;/p&gt;
+&lt;p&gt;Usage examples:- &lt;br /&gt;
+&lt;code&gt;swift upload CONTAINER_NAME foo.jpg&lt;/code&gt; uploads a file &lt;code&gt;foo.jpg&lt;/code&gt; to an existing container. 
+For larger files such as disk images, you may want to upload in chunks by passing an 
+extra parameter &lt;code&gt;-S CHUNK_SIZE&lt;/code&gt;.&lt;br /&gt;
+&lt;code&gt;swift stat CONTAINER_NAME foo.jpg&lt;/code&gt; prints out info on a previously uploaded object 
+&lt;code&gt;foo.jpg&lt;/code&gt; inside an existing container.&lt;br /&gt;
+&lt;code&gt;swift list CONTAINER_NAME&lt;/code&gt; prints a list of objects in the named container.  &lt;/p&gt;
+&lt;h3&gt;Further reading&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;https://wiki.openstack.org/wiki/Swift&lt;/li&gt;
+&lt;li&gt;http://docs.openstack.org/user-guide/content/swift_commands.html&lt;/li&gt;
+&lt;li&gt;http://docs.openstack.org/developer/swift/&lt;/li&gt;
+&lt;li&gt;http://nairobilug.or.ke/2014/07/swiftclient-openstack.html&lt;/li&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Sun, 24 Aug 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-08-24:swift_cli_usage.html</guid><category>swift</category><category>how to</category></item><item><title>Importing keypairs</title><link>http://help.kili.io/import_keypair.html</link><description>&lt;h3&gt;INTRO&lt;/h3&gt;
+&lt;p&gt;Key-based authentication is the most secure way to gain access to your Kili instance (provided you keep your private key under lock and key).&lt;br&gt;
+The others are password based and kerberos based SSH authentication which are disabled by default on the production images we provide for you.&lt;br&gt;
+This article will illustrate how to generate SSH Keys and import the resultant public key into your kili account when launching an instance and thereafter, allowing you to gain access to your new VM. &lt;/p&gt;
+&lt;h3&gt;Pre-requisites:-&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Active login session&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;If you do not have a keypair, generate one on:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Posix (Mac/Linux) by :-&lt;ul&gt;
+&lt;li&gt;Running ssh-keygen -t rsa&lt;/li&gt;
+&lt;li&gt;Enter key location (leave blank for bracketed default)&lt;/li&gt;
+&lt;li&gt;Enter a passphrase and confirm&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Windows using &lt;a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html"&gt;PuTTY&lt;/a&gt; by:-&lt;ul&gt;
+&lt;li&gt;Running puttygen.exe&lt;/li&gt;
+&lt;li&gt;Click generate and fill the progress bar by moving the cursor over the blank area to generate random characters.&lt;/li&gt;
+&lt;li&gt;Enter a passphrase in the Key passphrase field and confirm the same in the respective field.&lt;/li&gt;
+&lt;li&gt;Save the public and private keys in a safe location.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;On the dashboard, open the launch Instance modal from either:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href="https://dash.kili.io/project/access_and_security/" target="_blank"&gt;access and security panel&lt;/a&gt; (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Access &amp;amp; Security&lt;/code&gt;) by clicking "Import keypair" button at the top right of the panel.&lt;/li&gt;
+&lt;li&gt;The Access &amp;amp; Security tab in the &lt;a href="launch_an_instance.html"&gt;launch instance&lt;/a&gt; modal form.&lt;br&gt;
+    &lt;br&gt;&lt;img src="img/Select_Access_Security.png" alt="Access &amp; Security Panel" height="2500" width="673"&gt;&lt;/img&gt;&lt;br&gt;&lt;br&gt;&lt;ul&gt;
+&lt;li&gt;Click on Import Keypair button.&lt;br&gt;
+    &lt;br&gt;&lt;img src="img/Import_Keypair.png" alt="Import Keypair" height="500" width="462"&gt;&lt;/img&gt;&lt;br&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;Keypair Details will be displayed as shown in the image below.&lt;br&gt;
+    &lt;br&gt;&lt;img src="img/Import_Successful.png" alt="Confirm Keypair Import" height="2500" width="675"&gt;&lt;/img&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Once your have your Import Keypair modal, provide a name you will recognise for the key and paste the contents of your public key file into the public key text field.&lt;br&gt;
+    &lt;br&gt;&lt;img src="img/instance_access_n_security.png" alt="Import/Select Keypair" height="1500" width="658"&gt;&lt;/img&gt;&lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 16 Apr 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-04-16:import_keypair.html</guid><category>instances</category><category>launching</category><category>how to</category></item><item><title>Launching an Instance</title><link>http://help.kili.io/launch_an_instance.html</link><description>&lt;p&gt;virtual machines on our cloud (and of course, for you to have those 
+machines located in Kenya).  This tutorial walks you through the basics 
+of setting up your first instance. &lt;/p&gt;
+&lt;h3&gt;INTRO&lt;/h3&gt;
+&lt;p&gt;This article illustrates how to spin up both persistent and ephemeral instances
+from the dashboard.&lt;br /&gt;
+A Persistent instance uses a block storage volume for it's root file system. 
+This allows the operating system files (and related user data) to survive 
+termination of the associated instance.&lt;br /&gt;
+An Ephemeral instance is the direct opposite of a Persistent instance. 
+It's root volume will be destroyed once the instance is terminated!&lt;/p&gt;
+&lt;p&gt;Ephemeral instances are mostly useful for one-off/short-lived applications 
+whereas persistent instances will be preferable for longterm applications.&lt;/p&gt;
+&lt;h3&gt;Pre-requisites:-&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Active login session&lt;/li&gt;
+&lt;li&gt;Sufficient resource quota&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Instructions&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Open the launch Instance modal from either:-&lt;ul&gt;
+&lt;li&gt;The &lt;a href="https://dash.kili.io/project/instances/" target="_blank"&gt;instances panel&lt;/a&gt; 
+  (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Instances&lt;/code&gt;) by clicking 
+  "launch instance" button at the top right of the panel.&lt;/li&gt;
+&lt;li&gt;The &lt;a href="https://dash.kili.io/project/images/" target="_blank"&gt;images panel&lt;/a&gt; 
+  (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Images&lt;/code&gt;) by clicking 
+  the "launch" button in the actions collumn of the desired image.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;In the "Launch Instance" modal form, provide an Instance Name and Flavor.  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;To launch an &lt;strong&gt;ephemeral instance&lt;/strong&gt;, select "Boot from image" as your 
+  Instance Boot Source and choose your preferred image Image.&lt;br /&gt;
+&lt;strong&gt;NB.&lt;/strong&gt; If you opened the Launch Instance modal from the images panel,
+  the last two options will already have been set&lt;br /&gt;
+    &lt;img src="img/launch_instance.png" height="500" width="460"&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To launch a &lt;strong&gt;persistent instance&lt;/strong&gt;, select "Boot from image 
+  (creates a new volume)" as your Instance Boot Source, choose your 
+  preferred image and enter a device size for your new block volume. 
+  Do not check the &lt;code&gt;Delete on Terminate:&lt;/code&gt; check-box lest you defeat 
+  the purpose of your persistent instance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Switch to the "Access &amp;amp; Security" tab and select the appropriate ssh key 
+   from the Key Pair dropdown. The selected key will be added to the default user's ssh 
+   &lt;code&gt;Authorized_Keys&lt;/code&gt; file for key based authentication. If the drop down has no 
+   keys listed, click the &lt;code&gt;+&lt;/code&gt; and follow the 
+   &lt;a href="import_keypair" target="_blank"&gt;import keypair&lt;/a&gt; guide.
+   &lt;img src="img/instance_access_n_security.png" height="1200" width="526"&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Post Creation&lt;/h3&gt;
+&lt;p&gt;After launch, you probably want to assign a public IP to your instance.&lt;/p&gt;
+&lt;p&gt;Depending on the progress of your new VM's creation, manage your floating IP associations by clicking "Associate IP":-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Clicking "Associate IP" button in the VM's actions column if the VM 
+   is still spawning. (see below)&lt;br /&gt;
+    &lt;img src="img/assign_ip.png"&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Selecting the "Associate IP" option of the "more" drop down menu in 
+   the actions collumn if the VM has successfully spun up.(see below)&lt;br /&gt;
+    &lt;img src="img/assign_ip_spawning.png"&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;On the popup dialog, you can either select an existing IP (if available)
+from the drop down or allocate a new one from the &lt;code&gt;public-net&lt;/code&gt; pool by clicking 
+the &lt;code&gt;+&lt;/code&gt; button to the right of the drop down.&lt;br /&gt;
+&lt;img src="img/manage_fl_ip.png"&gt;&lt;/p&gt;
+&lt;p&gt;If both IP address assignment and spin up was successful, it should now be 
+possible to ssh into your VM using "ssh [USER]@[Public IP]" where:-&lt;/p&gt;
+&lt;p&gt;[Public IP] is the public ip you associated with your instance and
+[USER] is the default image user provided by distro you chose.....which will be:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ubuntu (for ubuntu)&lt;/li&gt;
+&lt;li&gt;debian (for debian)&lt;/li&gt;
+&lt;li&gt;cloud-user (for CentOS 6.5)&lt;/li&gt;
+&lt;li&gt;centos (for CentOS 7)&lt;/li&gt;
+&lt;li&gt;coreos (for CoreOS Alpha)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hence if you spun up a CentOS image and you assigned an ip 1.2.3.4, you should 
+access your instance by &lt;code&gt;ssh cloud-user@1.2.3.4&lt;/code&gt;, provided you have the required 
+security group rules in place. (See the security groups section below)  &lt;/p&gt;
+&lt;p&gt;If you're having problems accessing your instance, you may want to have a look at
+&lt;a href="http://gitolite.com/gitolite/sts.html"&gt;this great ssh troubleshooting article&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;A note on Security Groups&lt;/h3&gt;
+&lt;p&gt;Security groups are sets of IP filter rules that are applied to an instance's 
+networking. By default, for new accounts, the default security group denies 
+access to port 22 from 0.0.0.0/0.&lt;/p&gt;
+&lt;p&gt;If you wish to ssh into your instance you should tweak the "Security Groups"
+to allow ingress SSH access on port 22 of the VM. This action is only done 
+once for every new account.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Go to &lt;a href="https://dash.kili.io/project/access_and_security/?tab=access_security_tabs_security_groups_tab" target="_blank"&gt;Security Groups&lt;/a&gt; (&lt;code&gt;Project&lt;/code&gt; &amp;rarr; &lt;code&gt;Compute&lt;/code&gt; &amp;rarr; &lt;code&gt;Access &amp;amp; Security&lt;/code&gt;).&lt;br /&gt;
+        &lt;img src="img/Security_Groups_AnS.png" height="1000" width="700"&gt;&lt;/li&gt;
+&lt;li&gt;Click on &lt;code&gt;Manage Rules&lt;/code&gt; button under Actions section for the security group 
+  &lt;code&gt;default&lt;/code&gt; located below the &lt;code&gt;Create/Delete Security Group&lt;/code&gt; button on the
+  right side of the dashboard.&lt;/li&gt;
+&lt;li&gt;Under the section &lt;code&gt;Manage Security Group Rules:default&lt;/code&gt;, select button 
+  &lt;code&gt;Add Rule&lt;/code&gt; on the top right corner of the dashboard.&lt;br /&gt;
+        &lt;img src="img/Add_SSH_Rule.png" height="700" width="556"&gt;&lt;/li&gt;
+&lt;li&gt;As shown in the image above, select ( &lt;code&gt;Rule&lt;/code&gt; &amp;rarr; &lt;code&gt;SSH&lt;/code&gt;, &lt;code&gt;Remote&lt;/code&gt; &amp;rarr; &lt;code&gt;CIDR&lt;/code&gt; , &lt;code&gt;CIDR&lt;/code&gt; &amp;rarr; &lt;code&gt;0.0.0.0/0&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At this point you should be capable of accessing your instances via ssh on port 22. 
+If you would like to open up a different port, feel free to adapt the steps by 
+selecting a different protocol from the &lt;code&gt;Rule:&lt;/code&gt; drop down or selecting a custom 
+rule on the same for a custom port.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 16 Apr 2014 14:00:00 +0300</pubDate><guid>tag:help.kili.io,2014-04-16:launch_an_instance.html</guid><category>instances</category><category>launching</category><category>how to</category></item></channel></rss>

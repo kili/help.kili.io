@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="https://www.facebook.com/2008/fbml">
+<head>
+    <title>Backing up your data (snapshot and download) - Kili</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Open Graph tags -->
+        <meta property="og:site_name" content="Kili" />
+            <meta property="og:type" content="article"/>
+            <meta property="og:title" content="Backing up your data (snapshot and download)"/>
+            <meta property="og:url" content="./snapshot_and_download.html"/>
+            <meta property="og:description" content="A &#34;how to&#34; on retrieving your data in preparation for Kili Cloud suspension."/>
+            <meta property="article:published_time" content="2015-12-03" />
+                <meta property="article:section" content="misc" />
+                <meta property="article:tag" content="glance" />
+                <meta property="article:tag" content="swift" />
+                <meta property="article:tag" content="snapshot" />
+                <meta property="article:tag" content="backup" />
+                <meta property="article:tag" content="how to" />
+                <meta property="article:author" content="James Nzomo" />
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="./theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="./theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="./theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="./theme/css/style.css" type="text/css"/>
+    
+    <!-- Custom Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+
+        <link href="./css/kili.css" rel="stylesheet">
+
+        <link href="./feeds/all.rss.xml" type="application/atom+xml" rel="alternate"
+              title="Kili ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="./" class="navbar-brand">
+Kili            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="./snapshot_and_download.html"
+                       rel="bookmark"
+                       title="Permalink to Backing up your data (snapshot and download)">
+                        Backing up your data (snapshot and download)
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+            <a href="./author/james-nzomo.html"><i class="fa fa-user"></i> James Nzomo</a> | 
+    <span class="published">
+        <time datetime="2015-12-03T12:00:00"> December 03, 2015</time>
+    </span>
+
+
+
+ | 
+	<a href="./tag/glance.html">glance</a>
+        /
+	<a href="./tag/swift.html">swift</a>
+        /
+	<a href="./tag/snapshot.html">snapshot</a>
+        /
+	<a href="./tag/backup.html">backup</a>
+        /
+	<a href="./tag/how-to.html">how to</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <h3>INTRO</h3>
+<p>This is a step by step guide on how to retrieve your data (volume and instance snapshots) for migration to a different cloud provider.<br />
+This is only necessary if you require the entire volume(s). Feel free to be more surgical and [ <a href="https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html">mysql</a> | <a href="http://www.postgresql.org/docs/current/static/app-pg-dumpall.html">pg_</a> ]dump then <a href="https://en.wikipedia.org/wiki/Secure_copy">scp</a> or <a href="https://en.wikipedia.org/wiki/Rsync">rsync</a> the data out of your instances or mounted volumes.  </p>
+<h3>Step 1</h3>
+<p>Visit <a href="https://dash.kili.io/project/instances/" target="_blank">Instances Dashboard</a> and create a snapshot of the instance you'd like to back up, specify a snapshot name, click "create snapshot". Give it time to complete.</p>
+<h3>Step 1.5</h3>
+<p>Visit <a href="https://dash.kili.io/project/volumes/" target="_blank">Volumes Dashboard</a> and do the same as above for your volume(s). (Snapshot action is in the "more" menu for each row to the far right).</p>
+<h3>Step 2</h3>
+<p>Make sure you have the glance client installed (preferably via <a href="https://pip.pypa.io/en/latest/installing/">pip</a>):-</p>
+<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">glanceclient</span>
+</pre></div>
+
+
+<h3>Step 3</h3>
+<p><a href="https://dash.kili.io/project/access_and_security/api_access/openrc/">CTRL-Click here to Download Your OpenStack RC Credentials File</a> and <a href="https://en.wikipedia.org/wiki/Source_(command)">source</a> it. If you are on windows, look at the env vars therein and set them manually.  </p>
+<h3>Step 4</h3>
+<p>Find the snapshot you need</p>
+<div class="highlight"><pre><span class="n">glance</span> <span class="o">--</span><span class="n">os</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">version</span> <span class="mi">2</span> <span class="n">image</span><span class="o">-</span><span class="n">list</span>
+
+<span class="o">+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+</span>
+<span class="o">|</span> <span class="n">ID</span>                                   <span class="o">|</span> <span class="n">Name</span>                          <span class="o">|</span> <span class="n">Disk</span> <span class="n">Format</span> <span class="o">|</span> <span class="n">Container</span> <span class="n">Format</span> <span class="o">|</span> <span class="n">Size</span>       <span class="o">|</span> <span class="n">Status</span> <span class="o">|</span>
+<span class="o">+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+</span>
+
+<span class="o">-----</span> <span class="n">Output</span> <span class="n">Truncated</span> <span class="o">-----</span>
+
+<span class="o">|</span> <span class="mi">0</span><span class="n">ec56a99</span><span class="o">-</span><span class="n">b713</span><span class="o">-</span><span class="mi">4</span><span class="n">d4c</span><span class="o">-</span><span class="n">b3de</span><span class="o">-</span><span class="mi">6219890857</span><span class="n">dc</span> <span class="o">|</span> <span class="n">Your_Snapshot</span>                <span class="o">|</span> <span class="n">qcow2</span>       <span class="o">|</span> <span class="n">bare</span>             <span class="o">|</span> <span class="mi">7591559168</span> <span class="o">|</span> <span class="n">active</span> <span class="o">|</span>
+
+<span class="o">-----</span> <span class="n">Output</span> <span class="n">Truncated</span> <span class="o">-----</span>
+
+<span class="o">+--------------------------------------+-------------------------------+-------------+------------------+------------+--------+</span>
+</pre></div>
+
+
+<h3>Step 5</h3>
+<p>Download your snapshot. Repeat for all the snapshots you have/need.</p>
+<div class="highlight"><pre><span class="n">you</span><span class="err">@</span><span class="n">your</span><span class="o">-</span><span class="n">host</span><span class="o">:~</span><span class="err">#</span> <span class="n">glance</span> <span class="o">--</span><span class="n">os</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">version</span> <span class="mi">2</span> <span class="n">image</span><span class="o">-</span><span class="n">download</span> <span class="mi">0</span><span class="n">ec56a99</span><span class="o">-</span><span class="n">b713</span><span class="o">-</span><span class="mi">4</span><span class="n">d4c</span><span class="o">-</span><span class="n">b3de</span><span class="o">-</span><span class="mi">6219890857</span><span class="n">dc</span> <span class="o">--</span><span class="n">progress</span> <span class="o">--</span><span class="n">file</span> <span class="n">Your_Snapshot</span><span class="p">.</span><span class="n">img</span>
+<span class="p">[</span><span class="o">=============================&gt;</span><span class="p">]</span> <span class="mi">100</span><span class="o">%</span>
+</pre></div>
+
+
+<h2>In conclusion</h2>
+<p>Once you've successfully accomplished the above, you can then upload (and mount) your snapshots on most other cloud providers out there that support <a href="http://www.linux-kvm.org/page/Qcow2">QCOW2</a> format images.
+For swift/object storage backup, see <a href="swift_cli_usage">swift_cli_usage</a></p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+	 <div class="col-xs-10">  
+		 &copy; 2015 Kili.io, Inc &#9729; 
+		 <a href="http://kili.io/#pricing">Pricing</a> &#9729;
+		 <a href="https://dash.kili.io">Dashboard</a> &#9729;
+		 <a href="https://github.com/kili/help.kili.io">Write an Article</a> 
+	 </div>
+	 </div>
+      </div>
+   </div>
+</footer>
+<script src="./theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="./theme/js/respond.min.js"></script>
+
+</body>
+</html>
